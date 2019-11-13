@@ -1,0 +1,67 @@
+.footer{
+  background-color: var(--primary);
+  padding-top: 1.5rem;
+}
+
+.footer > *:not(.copyright){
+  width: 75%;
+  margin: 0 auto;
+  margin-bottom: 1.5rem;
+}
+
+.copyright{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: var(--emphasis);
+  color: var(--text-secondary);
+}
+
+.copyright img{
+  height: 2.5rem;
+  margin-bottom: .5rem;
+}
+
+.copyright p{
+  font-size: .75rem;
+}
+
+.newsletter{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: var(--text-secondary);
+}
+
+.newsletter p, .newsletter fieldset{
+  width: 50%;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  border: none;
+}
+
+.newsletter fieldset input, .newsletter fieldset button{
+  border: none;
+  height: 100%;
+  padding: .5rem 1rem;
+  font-size: 1rem;
+  outline: none;
+}
+.newsletter fieldset input{
+  width: 75%;
+  color: var(--text);
+}
+.newsletter fieldset button{
+  width: 25%;
+  font-weight: bold;
+  background-color: var(--emphasis);
+  color: var(--text-secondary);
+  transform: scale3d(1,1,1);
+  transition: transform .2s;
+}
+.newsletter fieldset button:active{
+  transform: scale3d(.95, .95, 1);
+  border-radius: var(--border-radius);
+}
