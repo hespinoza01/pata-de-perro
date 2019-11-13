@@ -1,0 +1,21 @@
+.socialbar{
+  display: flex;
+  flex-direction: row;
+}
+
+.socialbar a{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
+  color: var(--text-primary);
+  background-color: var(--secondary);
+  border-radius: var(--border-radius-big);
+  text-decoration: none;
+}
+.socialbar a:last-child{
+  margin-right: 0;
+}
