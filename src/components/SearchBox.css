@@ -1,0 +1,26 @@
+.searchbox{
+  display: flex;
+  flex-direction: row;
+  height: 2.5rem;
+}
+
+.searchbox-input, .searchbox-submit{
+  padding: .5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+}
+
+.searchbox-input{
+  border: 1px solid var(--border-color);
+  width: 20rem;
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+
+.searchbox-submit{
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  font-weight: bold;
+}
+.searchbox-submit i{
+  margin-left: .5rem;
+}
