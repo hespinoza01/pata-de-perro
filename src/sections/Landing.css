@@ -1,0 +1,47 @@
+.landing-img
+{
+    width: 100%;
+    height: 100vh;
+}
+.landing-btn, .landing-txt
+{
+    height: 2.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    margin-left: 1rem;
+   
+}
+.landing-btn
+{
+    border-radius: var(--border-radius);
+    
+}
+.landing-txt
+{
+    border-radius: var(--border-radius);
+    width: 30rem;
+    margin-bottom: 1rem; 
+}
+.landing-form
+{
+    position: absolute;
+    top: 40vh;
+    left: 70vh;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    color: black;
+    background-color: white;
+}
+.landing-logo
+{
+    position: absolute;
+    top: 0vh;
+    left: 1vh;
+    height: 10rem;
+}
+.landing-h1
+{
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
