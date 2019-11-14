@@ -1,13 +1,28 @@
-import React from 'react';
+import React, {Component} from 'react';
+
 import Footer from './sections/Footer';
+import Map from "./components/Map";
+import Header from "./sections/Header";
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <Footer></Footer>
-    </div>
-  );
+class App extends Component {
+
+  constructor(props){
+    super(props);
+
+    this.state = {};
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Header></Header>
+        <Map></Map>
+        <Footer></Footer>
+      </div>
+    );
+  }
 }
 
 export default App;
