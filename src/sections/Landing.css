@@ -9,35 +9,40 @@
     padding: 0.5rem 1rem;
     font-size: 1rem;
     margin-left: 1rem;
-   
+
 }
+.landing-btn, .landing-txt{
+  border: none;
+  outline: none;
+}
+
 .landing-btn
 {
     border-radius: var(--border-radius);
-    
 }
 .landing-txt
 {
+  border: 1px solid gainsboro;
     border-radius: var(--border-radius);
     width: 30rem;
-    margin-bottom: 1rem; 
 }
 .landing-form
 {
     position: absolute;
-    top: 40vh;
-    left: 70vh;
-    padding: 0.5rem 1rem;
+    top: 50vh;
+    left: 50%;
+    padding: 2rem 4rem;
     border-radius: var(--border-radius);
+    transform: translate(-50%, -50%);
     color: black;
-    background-color: white;
+    background-color: rgba(255, 255, 255, .75);
 }
 .landing-logo
 {
     position: absolute;
-    top: 0vh;
-    left: 1vh;
-    height: 10rem;
+    top: 1vmin;
+    left: 1vmin;
+    height: 4rem;
 }
 .landing-h1
 {
