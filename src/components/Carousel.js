@@ -10,12 +10,15 @@ class Carousel extends Component {
     this.state = {
       images: this.props.images,
       imagesLen: this.props.images.length,
-      current: 1
+      current: 1,
+      slideWidth: 0
     }
   }
 
   componentDidMount() {
     let ref = this.refs.carouselSlide;
+
+    this.setState({slideWidth: ref.getBoundingClientRect().width - 500});
 
     setInterval(() => {
       if(!ref) {
@@ -25,7 +28,8 @@ class Carousel extends Component {
 
       let len = this.state.imagesLen, current = this.state.current;
 
-      ref.style.left = `calc(-${100 * current}% - ${15 * current}px)`;
+      //ref.style.left = `calc(-${100 * current}% - ${15 * current}px)`;
+      ref.style.transform = `translate3d(calc(-${(this.state.slideWidth / len) * current}px - ${15 * current}px), 0, 0)`;
 
       this.setState({current: (current < (len-1)) ? current + 1 : 0});
     }, 5000);

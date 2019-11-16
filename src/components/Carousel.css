@@ -9,11 +9,12 @@
 .carousel-slide{
   padding: 0;
   margin: 0;
-  will-change: left;
+  will-change: left, transform;
   position: absolute;
   top: 0;
   left: 0;
-  transition: left 2.5s;
+  transform: translate3d(0, 0, 0);
+  transition: left 2.5s, transform 2.5s;
 }
 
 .carousel-item{
