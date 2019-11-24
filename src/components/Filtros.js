@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PlacesTypes from "../data/PlacesTypes";
 
 import './Filtros.css'
 
@@ -40,10 +41,16 @@ class Filtros extends Component{
         <form className={this.state.filterBarClass} action="http://localhost:3000">
           <span className='filtersBar-close' onClick={this.onCloseFilterBar}><i className="fa fa-close"> </i></span>
 
-          <fieldset>
-            <input type="checkbox" name="bares" id="bares"/>
-            <label htmlFor="bares">Bares</label>
-          </fieldset>
+          {
+            PlacesTypes.map(item => {
+              return (
+                <fieldset key={item.value}>
+                  <input type="checkbox" name={item.value} id={item.value}/>
+                  <label htmlFor={item.value}>{item.name}</label>
+                </fieldset>
+              );
+            })
+          }
         </form>
       </div>
     );

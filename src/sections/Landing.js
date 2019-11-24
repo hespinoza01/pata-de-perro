@@ -12,6 +12,7 @@ import volcanMasaya from '../img/landing/volcan-masaya.jpg';
 
 import SearchBox from "../components/SearchBox";
 import Carousel from "../components/Carousel";
+import Filtros from "../components/Filtros";
 
 let style = {
   padding: 0,

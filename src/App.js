@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 
 import Footer from './sections/Footer';
-import Map from "./components/Map";
-import Header from "./sections/Header";
 import Landing from "./sections/Landing";
 
 import './App.css';
