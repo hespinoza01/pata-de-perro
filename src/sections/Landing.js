@@ -12,7 +12,6 @@ import volcanMasaya from '../img/landing/volcan-masaya.jpg';
 
 import SearchBox from "../components/SearchBox";
 import Carousel from "../components/Carousel";
-import Filtros from "../components/Filtros";
 
 let style = {
   padding: 0,
@@ -21,7 +20,7 @@ let style = {
   height: '100%'
 };
 
-function Landing(props){
+function Landing({onHideLanding}){
   let images=[Granada, Gue, lp, NicaraguaBosawas, ometepe, volcan, volcanMasaya];
 
   return (
@@ -32,7 +31,7 @@ function Landing(props){
 
       <div className='landing-form'>
         <h1 className='landing-h1'>¡Descubre Nicaragua!</h1>
-        <SearchBox placeholder={'¿Qué quieres buscar?'}/>
+        <SearchBox onSubmit={onHideLanding} placeholder={'¿Qué quieres buscar?'}/>
       </div>
     </section>
   );
