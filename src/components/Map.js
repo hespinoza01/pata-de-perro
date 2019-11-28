@@ -4,6 +4,7 @@ import GoogleMapReact from 'google-map-react';
 import './Map.css';
 
 import CurrentPin from "./CurrentPin";
+import MapConfig from "../data/MapConfig";
 
 
 class Map extends Component{
@@ -46,7 +47,7 @@ class Map extends Component{
       <div id="map-canvas">
         <GoogleMapReact
           ref={this._map}
-          bootstrapURLKeys={{ key: 'AIzaSyCAIq7awOrM6z7kVLPazVHFnlJQCwbZnUw' }}
+          bootstrapURLKeys={{ key:  MapConfig.KEY}}
           defaultCenter={this.props.center}
           center={this.state.center}
           defaultZoom={this.props.zoom}
