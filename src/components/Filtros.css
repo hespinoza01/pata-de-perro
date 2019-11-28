@@ -4,7 +4,7 @@
   top: 0;
   width: 20%;
   height: 100%;
-  padding: 2rem 1rem;
+  padding: 1rem 2rem;
   background-color: var(--secondary);
   transform: translateX(100%);
   transition: transform .5s;
@@ -18,9 +18,9 @@
 }
 
 .filtersBar-close{
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
+  position: relative;
+  top: 0;
+  left: 0;
   background-color: transparent;
   font-size: 1.5rem;
   color: var(--text-primary);
@@ -40,4 +40,16 @@
 
 .filtersBar-open i{
   margin-left: .5rem;
+}
+
+.categoryContainer.first{
+  margin-top: 1rem;
+}
+.categoryContainer{
+  border: none;
+  margin-bottom: 1rem;
+}
+
+.categoryContainer-input{
+  margin-right: .5rem;
 }

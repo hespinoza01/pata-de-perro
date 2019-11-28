@@ -34,6 +34,8 @@ class Filtros extends Component{
   }
 
   render(){
+    let first = true;
+
     return (
       <div>
         <button className='filtersBar-open' onClick={this.onShowFilterBar}>Filtros <i className='fa fa-sliders'> </i></button>
@@ -44,9 +46,13 @@ class Filtros extends Component{
           {
             PlacesTypes.map(item => {
               return (
-                <fieldset key={item.value}>
-                  <input type="checkbox" name={item.value} id={item.value}/>
-                  <label htmlFor={item.value}>{item.name}</label>
+                <fieldset key={item.value} className={`categoryContainer ${(first) ? 'first' : ''}`}>
+                  <input className='categoryContainer-input' type="checkbox" name={item.value} id={item.value} checked/>
+                  <label className='categoryContainer-label' htmlFor={item.value}>{item.name}</label>
+
+                  {
+                    first = false
+                  }
                 </fieldset>
               );
             })

@@ -12,7 +12,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      isLanding: true
+      isLanding: false
     };
 
     this.onHideLanding = this.onHideLanding.bind(this);
