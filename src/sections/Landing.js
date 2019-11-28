@@ -20,7 +20,7 @@ let style = {
   height: '100%'
 };
 
-function Landing({onHideLanding}){
+function Landing({onHideLanding, onChangeSearchValue}){
   let images=[Granada, Gue, lp, NicaraguaBosawas, ometepe, volcan, volcanMasaya];
 
   return (
@@ -31,7 +31,7 @@ function Landing({onHideLanding}){
 
       <div className='landing-form'>
         <h1 className='landing-h1'>¡Descubre Nicaragua!</h1>
-        <SearchBox onSubmit={onHideLanding} placeholder={'¿Qué quieres buscar?'}/>
+        <SearchBox onSubmit={onHideLanding} onChange={onChangeSearchValue} placeholder={'¿Qué quieres buscar?'}/>
       </div>
     </section>
   );

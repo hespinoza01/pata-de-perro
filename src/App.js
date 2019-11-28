@@ -12,10 +12,13 @@ class App extends Component {
     super(props);
 
     this.state = {
-      isLanding: false
+      isLanding: false,
+      searchValue: '',
+      category: {}
     };
 
     this.onHideLanding = this.onHideLanding.bind(this);
+    this.onChangeSearchValue = this.onChangeSearchValue.bind(this);
   }
 
   onHideLanding(e){
@@ -23,13 +26,18 @@ class App extends Component {
     this.setState({isLanding: !this.state.isLanding});
   }
 
+  onChangeSearchValue(e){
+    this.setState({searchValue: e.target.value});
+    console.log(this.state.searchValue);
+  }
+
   render() {
     return (
       <div className="App">
         {
           (this.state.isLanding)
-            ? <Landing onHideLanding={this.onHideLanding}/>
-            : <Header/>
+            ? <Landing onHideLanding={this.onHideLanding} onChangeSearchValue={this.onChangeSearchValue}/>
+            : <Header onChangeSearchValue={this.onChangeSearchValue}/>
         }
         <Footer/>
       </div>
