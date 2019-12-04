@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import Footer from './sections/Footer';
 import Landing from "./sections/Landing";
 import Header from "./sections/Header";
+import UseCookieAlert from "./sections/UseCookieAlert";
 
 import './App.css';
 
@@ -39,6 +40,7 @@ class App extends Component {
             ? <Landing onHideLanding={this.onHideLanding} onChangeSearchValue={this.onChangeSearchValue}/>
             : <Header onChangeSearchValue={this.onChangeSearchValue}/>
         }
+        <UseCookieAlert/>
         <Footer/>
       </div>
     );
