@@ -53,14 +53,19 @@ class Filtros extends Component{
   componentDidMount() {
     if(Cookie.Exists('CTGS')){
       this.setState({categorys: JSON.parse(Cookie.GetCookie('CTGS'))});
-      sessionStorage.setItem('CTGS', Cookie.GetCookie('CTGS'));
+    }else{
+      Cookie.CreateOrUpdate('CTGS', JSON.stringify(this.state.categorys));
     }
 
     if(Cookie.Exists('DSTC')){
       this.setState({distance: Cookie.GetCookie('DSTC')});
-      sessionStorage.setItem('DSTC', Cookie.GetCookie('DSTC'));
       this.refs['distanceRange'].value = Cookie.GetCookie('DSTC');
+    }else{
+      Cookie.CreateOrUpdate('DSTC', JSON.stringify(this.state.distance));
     }
+
+    sessionStorage.setItem('CTGS', JSON.stringify(this.state.categorys));
+    sessionStorage.setItem('DSTC', JSON.stringify(this.state.distance));
   }
 
   onShowFilterBar(e){

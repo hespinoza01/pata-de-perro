@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Cookie from "../utils/Cookie";
+import rId from "../utils/RandomId";
 
 import CookiePolicy from "../components/CookiePolicy";
 
@@ -20,10 +21,12 @@ class UseCookieAlert extends Component{
   }
 
   componentDidMount() {
-    if(Cookie.GetAllCookies().length > 0){
+    if(Cookie.Exists('FRTSACCS')){
       this.refs['node'].remove();
     }else{
       let cont = 1;
+
+      Cookie.CreateOrUpdate('FRTSACCS', rId());
 
       setInterval(() => {
         if(cont === 10) this.refs['node'].classList.add('hide');
