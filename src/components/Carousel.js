@@ -7,6 +7,8 @@ class Carousel extends Component {
   constructor(props){
     super(props);
 
+    this.timer = null;
+
     this.state = {
       images: this.props.images,
       imagesLen: this.props.images.length,
@@ -20,7 +22,7 @@ class Carousel extends Component {
 
     this.setState({slideWidth: ref.getBoundingClientRect().width - 500});
 
-    setInterval(() => {
+    this.timer = setInterval(() => {
       if(!ref) {
         console.error('ref: null value');
         return;
@@ -33,6 +35,10 @@ class Carousel extends Component {
 
       this.setState({current: (current < (len-1)) ? current + 1 : 0});
     }, 5000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
   }
 
   render(){

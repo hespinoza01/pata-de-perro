@@ -30,6 +30,7 @@ class Map extends Component{
 
   componentDidMount() {
     navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position);
       this.setState({center: {lat: position.coords.latitude, lng: position.coords.longitude}});
       console.log(this._map);
     }, (error) => {

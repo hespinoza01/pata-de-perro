@@ -1,50 +1,22 @@
-import React, {Component} from 'react';
+import React from 'react';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
-import Footer from './sections/Footer';
 import Landing from "./sections/Landing";
-import Header from "./sections/Header";
-import UseCookieAlert from "./sections/UseCookieAlert";
+import Main from "./sections/Main";
 
 import './App.css';
 
-class App extends Component {
-
-  constructor(props){
-    super(props);
-
-    this.state = {
-      isLanding: false,
-      searchValue: '',
-      category: {}
-    };
-
-    this.onHideLanding = this.onHideLanding.bind(this);
-    this.onChangeSearchValue = this.onChangeSearchValue.bind(this);
-  }
-
-  onHideLanding(e){
-    e.preventDefault();
-    this.setState({isLanding: !this.state.isLanding});
-  }
-
-  onChangeSearchValue(e){
-    this.setState({searchValue: e.target.value});
-    console.log(this.state.searchValue);
-  }
-
-  render() {
-    return (
-      <div className="App">
-        {
-          (this.state.isLanding)
-            ? <Landing onHideLanding={this.onHideLanding} onChangeSearchValue={this.onChangeSearchValue}/>
-            : <Header onChangeSearchValue={this.onChangeSearchValue}/>
-        }
-        <UseCookieAlert/>
-        <Footer/>
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div className="App">
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Landing}/>
+          <Route path="/inicio" component={Main}/>
+        </Switch>
+      </Router>
+    </div>
+  );
 }
 
 export default App;

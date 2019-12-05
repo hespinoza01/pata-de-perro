@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom';
 
 import './Landing.css';
 import logo from '../img/faviconwhite.png';
@@ -12,6 +13,8 @@ import volcanMasaya from '../img/landing/volcan-masaya.jpg';
 
 import SearchBox from "../components/SearchBox";
 import Carousel from "../components/Carousel";
+import Footer from "./Footer";
+import UseCookieAlert from "./UseCookieAlert";
 
 let style = {
   padding: 0,
@@ -20,21 +23,41 @@ let style = {
   height: '100%'
 };
 
-function Landing({onHideLanding, onChangeSearchValue}){
-  let images=[Granada, Gue, lp, NicaraguaBosawas, ometepe, volcan, volcanMasaya];
+class Landing extends Component{
+  constructor(props){
+    super(props);
 
-  return (
-    <section style={style}>
-      <Carousel images={images} />
+    this.state = {
+      images: [Granada, Gue, lp, NicaraguaBosawas, ometepe, volcan, volcanMasaya]
+    };
 
-      <img src={logo} className='landing-logo' alt='logo'/>
+    this.onGoToMain = this.onGoToMain.bind(this);
+  }
 
-      <div className='landing-form'>
-        <h1 className='landing-h1'>¡Descubre Nicaragua!</h1>
-        <SearchBox onSubmit={onHideLanding} onChange={onChangeSearchValue} placeholder={'¿Qué quieres buscar?'}/>
-      </div>
-    </section>
-  );
+  onGoToMain(e){
+    e.preventDefault();
+    this.props.history.push('/inicio');
+  }
+
+  render() {
+    return (
+      <section>
+        <article style={style}>
+          <Carousel images={this.state.images}/>
+
+          <img src={logo} className='landing-logo' alt='logo'/>
+
+          <div className='landing-form'>
+            <h1 className='landing-h1'>¡Descubre Nicaragua!</h1>
+            <SearchBox onSubmit={this.onGoToMain} placeholder={'¿Qué quieres buscar?'}/>
+          </div>
+        </article>
+
+        <UseCookieAlert/>
+        <Footer/>
+      </section>
+    );
+  }
 }
 
-export default Landing;
+export default withRouter(Landing);
