@@ -13,7 +13,7 @@
 
 .searchbox-input{
   border: 1px solid var(--border-color);
-  width: 20rem;
+  width: 17.5rem;
   border-radius: var(--border-radius) 0 0 var(--border-radius);
 }
 

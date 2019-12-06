@@ -28,15 +28,27 @@ class Landing extends Component{
     super(props);
 
     this.state = {
-      images: [Granada, Gue, lp, NicaraguaBosawas, ometepe, volcan, volcanMasaya]
+      images: [Granada, Gue, lp, NicaraguaBosawas, ometepe, volcan, volcanMasaya],
+      svalue: ''
     };
 
     this.onGoToMain = this.onGoToMain.bind(this);
+    this.onChangeSvalue = this.onChangeSvalue.bind(this);
+    this.onSeeMap = this.onSeeMap.bind(this);
   }
 
-  onGoToMain(e){
+  onGoToMain(e) {
     e.preventDefault();
     this.props.history.push('/inicio');
+    sessionStorage.setItem('SVALUE', this.state.svalue);
+  }
+
+  onSeeMap(){
+    this.props.history.push('/inicio');
+  }
+
+  onChangeSvalue(e){
+    this.setState({ svalue: e.target.value });
   }
 
   render() {
@@ -48,8 +60,13 @@ class Landing extends Component{
           <img src={logo} className='landing-logo' alt='logo'/>
 
           <div className='landing-form'>
-            <h1 className='landing-h1'>¡Descubre Nicaragua!</h1>
-            <SearchBox onSubmit={this.onGoToMain} placeholder={'¿Qué quieres buscar?'}/>
+            <h1 className='landing-h1'>¡Encuentra lugares cerca de ti y descubre Nicaragua!</h1>
+            <p className='landing-p'>Busca un museo, parque o restaurante. Tú decide. </p>
+
+            <div className='landing-controls'>
+              <SearchBox onSubmit={this.onGoToMain} onChange={this.onChangeSvalue} placeholder={'¿Qué quieres buscar?'}/>
+              <button className='landing-controls__btn' onClick={this.onSeeMap}><i className='fa fa-map'> </i> Ver mapa</button>
+            </div>
           </div>
         </article>
 
