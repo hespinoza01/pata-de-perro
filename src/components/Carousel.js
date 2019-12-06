@@ -14,13 +14,16 @@ class Carousel extends Component {
       imagesLen: this.props.images.length,
       current: 1,
       slideWidth: 0
-    }
+    };
+
+    this.onUpdateScreenSize = this.onUpdateScreenSize.bind(this);
   }
 
   componentDidMount() {
     let ref = this.refs.carouselSlide;
 
     this.setState({slideWidth: ref.getBoundingClientRect().width - 500});
+    window.addEventListener('resize', this.onUpdateScreenSize);
 
     this.timer = setInterval(() => {
       if(!ref) {
@@ -39,6 +42,12 @@ class Carousel extends Component {
 
   componentWillUnmount() {
     clearInterval(this.timer);
+    window.removeEventListener('resize', this.onUpdateScreenSize);
+  }
+
+  onUpdateScreenSize(){
+    let ref = this.refs.carouselSlide;
+    this.setState({slideWidth: ref.getBoundingClientRect().width - 500});
   }
 
   render(){
