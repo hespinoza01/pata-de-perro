@@ -15,6 +15,20 @@ function Target() {
                     
                     <a  href="https://vosdaledevelopers.com/equipo" target="_blank" className='btn-pag'>Mas informacion</a>
                 </div>
+                <div className='card'>
+                    <label className='valor'>Valoracion</label>
+                    <h2>Esto es una prueba</h2>
+                    <p>Aqui tratando de hacer un proyecto en una noche</p>
+                    
+                    <a  href="https://vosdaledevelopers.com/equipo" target="_blank" className='btn-pag'>Mas informacion</a>
+                </div>
+                <div className='card'>
+                    <label className='valor'>Valoracion</label>
+                    <h2>Esto es una prueba</h2>
+                    <p>Aqui tratando de hacer un proyecto en una noche</p>
+                    
+                    <a  href="https://vosdaledevelopers.com/equipo" target="_blank" className='btn-pag'>Mas informacion</a>
+                </div>
             </div>
             <div className='rightMap'>
                 <Map></Map>
