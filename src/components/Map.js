@@ -14,7 +14,7 @@ class Map extends Component{
       lat: 12.5,
       lng: -85.17336
     },
-    zoom: 16
+    zoom: 10
   };
 
   constructor(props){
@@ -29,7 +29,14 @@ class Map extends Component{
   }
 
   componentDidMount() {
-    this.setState({center: JSON.parse(sessionStorage.getItem('LCTN'))});
+    window.addEventListener('locationValue', () =>{
+      console.log(sessionStorage.getItem('LCTN'))
+      this.setState({center: JSON.parse(sessionStorage.getItem('LCTN'))});
+      });
+
+    window.addEventListener('storage', function(e) {
+      console.log('Woohoo, someone changed my localstorage va another tab/window!');
+    });
   }
 
   render(){

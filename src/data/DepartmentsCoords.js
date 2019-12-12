@@ -1,24 +1,9 @@
 const DepartmentsCoords = [
   {
-    name: 'CURRENT',
-    get coords () {
-      navigator.geolocation.getCurrentPosition((position) => {
-        return {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-      }, (error) => {
-        console.error('Error on get current position', error);
-      }, {
-        enableHighAccuracy: true,
-        timeout: 20000,
-        maximumAge: 1000
-      });
-
-      return {
-        lat: 12.5,
-        lng: -85.17336
-      }
+    name: 'Ubicación actual',
+    coords: {
+      lat: 0,
+      lng: 0
     }
   },
 

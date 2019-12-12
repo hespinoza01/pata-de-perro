@@ -11,13 +11,13 @@ class Filtros extends Component{
   constructor(props){
     super(props);
 
+    this.timer = null;
+
     this.state = {
       showFilterBar: false,
       filterBarClass: 'filtersBar',
-      location: {
-        lat: 0,
-        lng: 0
-      },
+      locationCurrent: true,
+      location: {lat: 0, lng: 0},
       distance: 5000,
       categorys: {
         airport: true,
@@ -54,6 +54,30 @@ class Filtros extends Component{
     this.onChangeCheck = this.onChangeCheck.bind(this);
     this.onExpandChange = this.onExpandChange.bind(this);
     this.onDistanceChange = this.onDistanceChange.bind(this);
+    this.onChangeLocation = this.onChangeLocation.bind(this);
+  }
+
+  componentWillMount() {
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          let value = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+
+          this.setState({location: value});
+          value = `${JSON.stringify(value)}`;
+          sessionStorage.removeItem('LCTN');
+          sessionStorage.setItem('LCTN', value);
+          Cookie.CreateOrUpdate('LCTN', value);
+        },
+        error => console.error(error),
+        {
+          enableHighAccuracy: false,
+          timeout: Infinity,
+          maximumAge: 0
+        }
+      );
   }
 
   componentDidMount() {
@@ -73,7 +97,7 @@ class Filtros extends Component{
     if(Cookie.Exists('LCTN')){
       this.setState({location: JSON.parse(Cookie.GetCookie('LCTN'))});
     }else{
-      Cookie.CreateOrUpdate('LCTN', JSON.stringify(DepartmentsCoords[0].coords));
+      Cookie.CreateOrUpdate('LCTN', JSON.stringify(this.state.location));
     }
 
     sessionStorage.setItem('CTGS', JSON.stringify(this.state.categorys));
@@ -124,6 +148,38 @@ class Filtros extends Component{
     sessionStorage.setItem('DSTC', e.target.value);
   }
 
+  onChangeLocation(e){
+    let node = e.target;
+    if(node.value !== "{\"lat\":0,\"lng\":0}"){
+      sessionStorage.setItem('LCTN', node.value);
+      Cookie.CreateOrUpdate('LCTN', node.value);
+    }else{
+      console.log('current')
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          let value = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+
+          this.setState({location: value});
+          value = JSON.stringify(value);
+          sessionStorage.removeItem('LCTN');
+          sessionStorage.setItem('LCTN', value);
+          Cookie.CreateOrUpdate('LCTN', value);
+        },
+        error => console.error(error),
+        {
+          enableHighAccuracy: false,
+          timeout: Infinity,
+          maximumAge: 0
+        }
+      );
+    }
+
+    window.dispatchEvent(new CustomEvent('locationValue', {}));
+  }
+
   render(){
     let first = true;
 
@@ -135,13 +191,13 @@ class Filtros extends Component{
           <span title="Ocultar" className='filtersBar-close' onClick={this.onCloseFilterBar}>Filtros<i className="fa fa-close"> </i></span>
 
           <div className="filtersBar-section">
-            <p className="filtersBar-section--title"><span><i className='fa fa-map'> </i>Ubicación</span></p>
+            <p className="filtersBar-section--title clear-arrow"><span><i className='fa fa-location-arrow'> </i> Ubicación</span></p>
 
-            <select name="location">
+            <select name="location" className='select-location' onChange={this.onChangeLocation}>
               {
                 DepartmentsCoords.map(item => {
                   return (
-                    <option key={rId()}>{ item.name }</option>
+                    <option key={rId()} value={JSON.stringify(item.coords)}>{ item.name }</option>
                   );
                 })
               }
@@ -167,10 +223,10 @@ class Filtros extends Component{
           </div>
 
           <div className='filtersBar-section'>
-            <p className='filtersBar-section--title'><span><i className='fa fa-map'></i>  Distancia</span></p>
+            <p className='filtersBar-section--title clear-arrow'><span><i className='fa fa-map'></i>  Distancia</span></p>
             <div className="range-distance">
               <span>5km</span>
-              <input ref='distanceRange' onChange={this.onDistanceChange} type="range" min="5000" max="50000" step="1000"/>
+              <input ref='distanceRange' className='slider' onChange={this.onDistanceChange} type="range" min="5000" max="50000" step="1000"/>
               <span>50km</span>
             </div>
           </div>

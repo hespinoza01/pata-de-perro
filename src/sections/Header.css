@@ -15,6 +15,7 @@
 .header-controls{
   display: flex;
   flex-direction: row;
+  margin: 0 auto;
 }
 .header-controls > *{
   margin-right: 1rem;
