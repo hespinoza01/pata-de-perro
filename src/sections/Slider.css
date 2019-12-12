@@ -1,0 +1,50 @@
+.c-slider
+{
+    margin: auto;
+    width: 10%;
+    max-width: 10%;
+    position: relative;
+    overflow: hidden;
+}
+.slider
+{
+    display: flex;
+    position: absolute;
+    width: 10%;
+}
+.slider section{
+    width: 10%;
+}
+.slider img
+{
+    display: block;
+    width: 10%;
+    height: 10%;
+}
+.btn-prev, .btn-next
+{
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 20px;
+    font-size: 22px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.btn-prev:hover, .btn-next:hover
+{
+    background: rgba(255, 255, 255, 1);
+}
+.btn-prev
+{
+    left: 5px;
+}
+.btn-next
+{
+    right: 5px;
+}
