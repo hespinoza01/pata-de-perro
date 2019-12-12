@@ -8,4 +8,11 @@ function CurrentPin() {
   );
 }
 
+function PlacePin(){
+  return (
+    <span className='fa fa-map-marker' style={{width: '1.75rem', color: 'royalblue'}}> </span>
+  );
+}
+
 export default CurrentPin;
+export {PlacePin};

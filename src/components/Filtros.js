@@ -17,7 +17,10 @@ class Filtros extends Component{
       showFilterBar: false,
       filterBarClass: 'filtersBar',
       locationCurrent: true,
-      location: {lat: 0, lng: 0},
+      location: {
+        lat: 12.1508,//position.coords.latitude,
+        lng: -86.2683//position.coords.longitude
+      },
       distance: 5000,
       categorys: {
         airport: true,
@@ -57,29 +60,6 @@ class Filtros extends Component{
     this.onChangeLocation = this.onChangeLocation.bind(this);
   }
 
-  componentWillMount() {
-      navigator.geolocation.getCurrentPosition(
-        position => {
-          let value = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
-
-          this.setState({location: value});
-          value = `${JSON.stringify(value)}`;
-          sessionStorage.removeItem('LCTN');
-          sessionStorage.setItem('LCTN', value);
-          Cookie.CreateOrUpdate('LCTN', value);
-        },
-        error => console.error(error),
-        {
-          enableHighAccuracy: false,
-          timeout: Infinity,
-          maximumAge: 0
-        }
-      );
-  }
-
   componentDidMount() {
     if(Cookie.Exists('CTGS')){
       this.setState({categorys: JSON.parse(Cookie.GetCookie('CTGS'))});
@@ -103,6 +83,8 @@ class Filtros extends Component{
     sessionStorage.setItem('CTGS', JSON.stringify(this.state.categorys));
     sessionStorage.setItem('DSTC', JSON.stringify(this.state.distance));
     sessionStorage.setItem('LCTN', JSON.stringify(this.state.location));
+
+    window.dispatchEvent(new CustomEvent('updateListMap', {}));
   }
 
   onShowFilterBar(e){
@@ -150,16 +132,16 @@ class Filtros extends Component{
 
   onChangeLocation(e){
     let node = e.target;
-    if(node.value !== "{\"lat\":0,\"lng\":0}"){
-      sessionStorage.setItem('LCTN', node.value);
-      Cookie.CreateOrUpdate('LCTN', node.value);
-    }else{
+    console.log(node.value);
+    sessionStorage.setItem('LCTN', node.value);
+    Cookie.CreateOrUpdate('LCTN', node.value);
+    /*else{
       console.log('current')
       navigator.geolocation.getCurrentPosition(
         position => {
           let value = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
+            lat: 12.1508,//position.coords.latitude,
+            lng: -86.2683//position.coords.longitude
           };
 
           this.setState({location: value});
@@ -174,10 +156,11 @@ class Filtros extends Component{
           timeout: Infinity,
           maximumAge: 0
         }
-      );
-    }
+      );*/
+    //}
 
     window.dispatchEvent(new CustomEvent('locationValue', {}));
+    window.dispatchEvent(new CustomEvent('updateListMap', {}));
   }
 
   render(){

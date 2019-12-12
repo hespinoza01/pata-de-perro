@@ -1,0 +1,32 @@
+.card
+{
+  --padding-img: 6rem;
+  --translate-value: 75px;
+  --padding-top-bottom: 1rem;
+  --padding-left-right: 2rem;
+  position: relative;
+  padding: var(--padding-top-bottom) var(--padding-left-right);
+  width: 50vw;
+  min-height: 8rem;
+  margin-bottom: 3rem;
+  text-align: center;
+  background-color: var(--secondary);
+}
+
+.valor{
+  position: absolute;
+  flex-direction: row;
+  justify-content: space-evenly;
+  bottom: 1rem;
+  right: 1rem;
+  width: 9rem;
+}
+
+.btn-pag{
+  position: absolute;
+  flex-direction: row;
+  justify-content: space-evenly;
+  bottom: 1rem;
+  right: 30rem;
+  width: 9rem;
+}

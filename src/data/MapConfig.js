@@ -1,6 +1,6 @@
 const MapConfig = {
   get KEY(){
-    return 'AIzaSyCAIq7awOrM6z7kVLPazVHFnlJQCwbZnUw';
+    return 'AIzaSyCE-EdbqV4zF6hKLJWEnfdVa8SxdWkHe2s';
   }
 };
 

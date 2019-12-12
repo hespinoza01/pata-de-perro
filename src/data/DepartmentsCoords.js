@@ -2,8 +2,8 @@ const DepartmentsCoords = [
   {
     name: 'Ubicación actual',
     coords: {
-      lat: 0,
-      lng: 0
+      lat: 12.1508,//position.coords.latitude,
+      lng: -86.2683//position.coords.longitude
     }
   },
 
