@@ -29,17 +29,7 @@ class Map extends Component{
   }
 
   componentDidMount() {
-    navigator.geolocation.getCurrentPosition((position) => {
-      console.log(position);
-      this.setState({center: {lat: position.coords.latitude, lng: position.coords.longitude}});
-      console.log(this._map);
-    }, (error) => {
-      alert(JSON.stringify(error))
-    }, {
-      enableHighAccuracy: true,
-      timeout: 20000,
-      maximumAge: 1000
-    });
+    this.setState({center: JSON.parse(sessionStorage.getItem('LCTN'))});
   }
 
   render(){

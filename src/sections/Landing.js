@@ -39,12 +39,12 @@ class Landing extends Component{
 
   onGoToMain(e) {
     e.preventDefault();
-    this.props.history.push('/inicio');
+    this.props.history.push('/app');
     sessionStorage.setItem('SVALUE', this.state.svalue);
   }
 
   onSeeMap(){
-    this.props.history.push('/inicio');
+    this.props.history.push('/app');
   }
 
   onChangeSvalue(e){

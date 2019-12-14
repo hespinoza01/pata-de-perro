@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import PlacesTypes from "../data/PlacesTypes";
 import Cookie from "../utils/Cookie";
+import DepartmentsCoords from "../data/DepartmentsCoords";
+import rId from "../utils/RandomId";
 
 import './Filtros.css'
 
@@ -12,6 +14,10 @@ class Filtros extends Component{
     this.state = {
       showFilterBar: false,
       filterBarClass: 'filtersBar',
+      location: {
+        lat: 0,
+        lng: 0
+      },
       distance: 5000,
       categorys: {
         airport: true,
@@ -64,8 +70,15 @@ class Filtros extends Component{
       Cookie.CreateOrUpdate('DSTC', JSON.stringify(this.state.distance));
     }
 
+    if(Cookie.Exists('LCTN')){
+      this.setState({location: JSON.parse(Cookie.GetCookie('LCTN'))});
+    }else{
+      Cookie.CreateOrUpdate('LCTN', JSON.stringify(DepartmentsCoords[0].coords));
+    }
+
     sessionStorage.setItem('CTGS', JSON.stringify(this.state.categorys));
     sessionStorage.setItem('DSTC', JSON.stringify(this.state.distance));
+    sessionStorage.setItem('LCTN', JSON.stringify(this.state.location));
   }
 
   onShowFilterBar(e){
@@ -120,6 +133,20 @@ class Filtros extends Component{
 
         <form className={this.state.filterBarClass} action="http://localhost:3000">
           <span title="Ocultar" className='filtersBar-close' onClick={this.onCloseFilterBar}>Filtros<i className="fa fa-close"> </i></span>
+
+          <div className="filtersBar-section">
+            <p className="filtersBar-section--title"><span><i className='fa fa-map'> </i>Ubicación</span></p>
+
+            <select name="location">
+              {
+                DepartmentsCoords.map(item => {
+                  return (
+                    <option key={rId()}>{ item.name }</option>
+                  );
+                })
+              }
+            </select>
+          </div>
 
           <div className='filtersBar-section'>
             <p className='filtersBar-section--title expand' onClick={this.onExpandChange}><span><i className='fa fa-cubes'></i> Categorías</span></p>
